@@ -1,6 +1,14 @@
 /* --------------------------------------index.html------------------------------------------ */
 /* --- GENERELT LAYOUT --- */
 
+:root {
+  --off-fish1: 200px;
+  --off-fish2: 200px;
+  --off-fish3: 200px;
+  --off-fish4: 300px;
+  --off-fish5: 400px;
+}
+
 html,
 body {
   height: 100%;
@@ -191,7 +199,6 @@ body {
   transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
 }
 
-
 #toolbar button:hover {
   background: linear-gradient(135deg, #48cae4, #90e0ef);
   transform: scale(1.05);
@@ -249,7 +256,7 @@ canvas {
 #canva {
   position: relative;
   width: 100%;
-  max-width: 960px;
+  max-width: 950px;
   height: 70vh;
   margin: 0 auto;
   border-radius: 20px;
@@ -276,7 +283,7 @@ canvas {
 #drawing-board {
   border: 3px solid #fff;
   border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+  width: 895px;
 }
 
 canvas {
@@ -352,4 +359,126 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   margin: 0;
+}
+
+.fish1 {
+  position: absolute;
+  bottom: 15.4vh;
+  width: 150px;
+  max-width: 28vw;
+  z-index: 1;
+  left: calc(-1 * var(--off-fish1));
+  will-change: transform;
+  animation: fish1 16s linear infinite;
+}
+
+@keyframes fish1 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + var(--off-fish1)));
+  }
+}
+
+.fish2 {
+  position: absolute;
+  bottom: 36.8vh;
+  width: 150;
+  max-width: 28vw;
+  right: calc(-1 * var(--off-fish2));
+  z-index: 1;
+  animation: fish2 25s linear infinite;
+}
+
+@keyframes fish2 {
+  0% {
+    transform: translateX(0);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(-100vw - var(--off-fish2)));
+  }
+}
+
+.fish3 {
+  position: absolute;
+  bottom: 5.8vh;
+  width: 150;
+  max-width: 28vw;
+  right: calc(-1 * var(--off-fish3));
+  z-index: 1;
+  animation: fish3 40s linear infinite;
+}
+
+@keyframes fish3 {
+  0% {
+    transform: translateX(0);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(-100vw - var(--off-fish1)));
+  }
+}
+
+:root {
+  --off-fish4: 200px; /* sørg for at den findes */
+}
+
+.fish4 {
+  position: absolute;
+  bottom: 70.8vh;
+  width: 150px;
+  max-width: 28vw;
+  left: calc(-1 * var(--off-fish4));
+  z-index: 1;
+  animation: fish4 40s linear infinite;
+}
+
+@keyframes fish4 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + var(--off-fish4)));
+  }
+}
+
+.fish5 {
+  position: absolute;
+  bottom: 83.8vh;
+  width: 150px;
+  max-width: 28vw;
+  left: calc(-1 * var(--off-fish5));
+  z-index: 1;
+  animation: fish5 15s linear infinite;
+}
+
+@keyframes fish5 {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + var(--off-fish5)));
+  }
+}
+
+.fish6 {
+  position: absolute;
+  bottom: 58.8vh;
+  width: 150;
+  max-width: 28vw;
+  right: calc(-1 * var(--off-fish3));
+  z-index: 1;
+  animation: fish3 9s linear infinite;
+}
+
+@keyframes fish3 {
+  0% {
+    transform: translateX(0);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(-100vw - var(--off-fish1)));
+  }
 }

@@ -1,4 +1,48 @@
 "use strict";
+
+// -------------------------- SOUND forside --------------------------
+(() => {
+  function initSound() {
+    const sound = document.getElementById("bgSound");
+    if (!sound) return;
+  
+    const playSafe = () => {
+      const p = sound.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+    playSafe();
+
+    // Unmute ved første brugerinteraktion
+    const enable = () => {
+      sound.muted = false;
+      playSafe();
+      teardown();
+    };
+    const teardown = () =>
+      evts.forEach((e) => window.removeEventListener(e, enable));
+    const evts = ["click", "scroll", "keydown", "touchstart"];
+    evts.forEach((e) => window.addEventListener(e, enable, { passive: true }));
+
+    // Stop lyden ved navigation
+    window.addEventListener("pagehide", () => {
+      sound.pause();
+      sound.currentTime = 0;
+    });
+    document.addEventListener("click", (e) => {
+      if (e.target.closest && e.target.closest("a[href]")) {
+        sound.pause();
+        sound.currentTime = 0;
+      }
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initSound, { once: true });
+  } else {
+    initSound();
+  }
+})();
+
 // -----------------------------index.html----------------------------------------
 
 // henter id fra canvas og tollbar er lines og clear knap
@@ -13,10 +57,6 @@ const ctx = canvas.getContext("2d");
 const templateCanvas = document.getElementById("template-layer");
 const templateCtx = templateCanvas.getContext("2d");
 
-// loader et template til ens baggrund sådan at folk kan tegne på fisken
-const background = new Image();
-background.src = "img/fisketemplate.png";
-
 // regner størrelser ud
 let canvasRect = canvas.getBoundingClientRect();
 const canvasOffsetX = canvas.offsetLeft;
@@ -29,16 +69,11 @@ canvas.height = window.innerHeight - canvasOffsetY;
 templateCanvas.width = canvas.width;
 templateCanvas.height = canvas.height;
 
-// Redraw the fish to fill the template layer
-background.onload = function () {
-  templateCtx.drawImage(
-    background,
-    0,
-    0,
-    templateCanvas.width,
-    templateCanvas.height
-  );
-};
+// Holder kun reference, tegner INTET ved load
+let currentTemplateSrc = null;
+
+// start med tomt template-lag
+templateCtx.clearRect(0, 0, templateCanvas.width, templateCanvas.height);
 
 // sætter defaults for at tegne
 let isPainting = false;
@@ -51,13 +86,6 @@ ctx.strokeStyle = "#000000";
 toolbar.addEventListener("click", (e) => {
   if (e.target.id === "clear") {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    templateCtx.drawImage(
-      background,
-      0,
-      0,
-      templateCanvas.width,
-      templateCanvas.height
-    ); // sætter template ind bagved igen når man ressetter den her kan egentlig bare fjernes
   }
 });
 
@@ -102,15 +130,29 @@ document.querySelectorAll(".size").forEach((btn) => {
   });
 });
 
-// Billede template selector
-document.querySelectorAll(".FiskeTemplate").forEach((img) => {
-  img.addEventListener("click", () => {
+document.querySelectorAll(".FiskeTemplate").forEach((thumb) => {
+  thumb.addEventListener("click", () => {
+    //vis kun den som er valgt
     document
-      .querySelectorAll(".FiskTemplate")
-      .forEach((img) => img.classList.remove("selected"));
-    img.classList.add("selected");
+      .querySelectorAll(".FiskeTemplate")
+      .forEach((el) => el.classList.remove("selected"));
+    thumb.classList.add("selected");
 
-    background.src = img.dataset.src;
+    // ryd begge lag (så INTET kan “ligge bagved”)
+    templateCtx.clearRect(0, 0, templateCanvas.width, templateCanvas.height);
+
+    // egn ny template, først når den er loadet
+    const img = new Image();
+    img.onload = () => {
+      templateCtx.drawImage(
+        img,
+        0,
+        0,
+        templateCanvas.width,
+        templateCanvas.height
+      );
+    };
+    img.src = thumb.dataset.src; // fx "img/ravefjaslines.png"
   });
 });
 
@@ -148,7 +190,7 @@ const draw = (e) => {
 canvas.addEventListener("mousemove", draw);
 
 //alt med localstorage kommer her
-const saveButton = document.getElementById("SaveFish");
+const saveButton = document.getElementById("saveFish");
 
 saveButton.addEventListener("click", () => {
   // converter det til url så man kan sende img
