@@ -243,6 +243,10 @@ body {
 }
 
 #forside-btn .btn-t {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 3rem;
   padding: 20px 40px;
   background-color: #f4aa43;
@@ -272,4 +276,11 @@ body {
   width: 850px;
   height: auto;
   object-fit: contain;
+}
+
+body {
+  background-image: url("img/bagrund.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
