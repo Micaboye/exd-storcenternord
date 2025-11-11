@@ -233,7 +233,7 @@ canvas {
 /* --------------------------forside---------------------------------------- */
 
 /* knapper */
-body {
+#forside.html body {
   margin: 0;
   height: 100vh;
   display: flex;
