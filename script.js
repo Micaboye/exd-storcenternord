@@ -5,7 +5,7 @@
   function initSound() {
     const sound = document.getElementById("bgSound");
     if (!sound) return;
-  
+
     const playSafe = () => {
       const p = sound.play();
       if (p && typeof p.catch === "function") p.catch(() => {});
