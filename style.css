@@ -1,5 +1,11 @@
 /* --------------------------------------index.html------------------------------------------ */
 /* --- GENERELT LAYOUT --- */
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", "Comic Neue", sans-serif;
@@ -7,13 +13,16 @@ body {
   overflow-x: hidden;
   color: #fff;
   line-height: 1.6;
+  overflow: hidden;
 }
 
 .container {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  gap: 12px;
+  box-sizing: border-box;
 }
 
 /* --- TOOLBAR OMRÅDET --- */
@@ -21,36 +30,46 @@ body {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  padding: 20px;
-  margin-bottom: 20px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
   text-align: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   width: 95%;
-  max-width: 1200px;
+  max-width: 900px;
 }
 
-#toolbar h1 {
-  font-size: 1.8rem;
-  color: #fff;
-  margin-bottom: 16px;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+#toolbar + div {
+  position: relative;
+  width: 70%;
+  max-width: 960px;
+  height: 55vh;
+  margin: 0 auto;
+  border-radius: 20px;
 }
 
 .subheading {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: #ffffff;
-  margin: 20px 0 10px;
+  margin: 8px 0;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
 /* --- FARVER OG STØRRELSES-KNAPPER --- */
-#colors,
-#sizes {
+#colors-sizes-row,
+#color-sizes-row {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
+  align-items: center;
+  gap: 40px;
   margin: 12px 0;
+}
+
+#colors,
+#sizes {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  margin: 6px 0;
 }
 
 .color,
@@ -87,12 +106,13 @@ body {
   justify-content: center;
   flex-wrap: wrap;
   gap: 16px;
-  margin: 20px 0;
+  margin: 12px 0;
 }
 
 #FiskeTemplates .FiskeTemplate {
-  width: 100px;
-  height: 75px;
+  aspect-ratio: 4 / 3;
+  height: 90px;
+  width: auto;
   object-fit: contain;
   border: 3px solid #fff;
   border-radius: 12px;
@@ -102,18 +122,18 @@ body {
 }
 
 #FiskeTemplates .FiskeTemplate:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   border-color: #ffd166;
 }
 
 #FiskeTemplates .FiskeTemplate.selected {
-  transform: scale(1.15);
+  transform: scale(1.08);
 }
 
 /* ------------------- Havfrue2 ------------------- */
 .havfrue2 {
   position: fixed;
-  left: 0; /* placer helt til venstre på skærmen */
+  left: 0;
   top: 20px;
   width: 120px;
   height: 180px;
@@ -121,16 +141,13 @@ body {
 }
 
 .havfrue2 img {
-  /* Sørg for at billedet tilpasser sig containeren (120x180) */
   width: 850px;
   height: auto;
   object-fit: contain;
 }
 
-/* Havfrue2 forsvinder EFTER 5 sekunder. 
-   Vi venter 5s (animation-delay) og fader derefter ud over 1s. */
+/* Havfrue2 fade-out */
 #havfrue2 {
-  /* vent 5s, fade ud over 1s, behold sluttilstand */
   animation-name: havfrue-disappear;
   animation-duration: 1s;
   animation-delay: 5s;
@@ -146,16 +163,14 @@ body {
   to {
     opacity: 0;
     transform: translateY(-20px) scale(0.95);
-    /* pointer-events forhindrer klik på elementet når det er usynligt */
     pointer-events: none;
   }
 }
 
 /* --- KNAPPER --- */
-
 #colors .color {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -168,7 +183,7 @@ body {
   border-radius: 14px;
   color: white;
   font-size: 1rem;
-  padding: 10px 18px;
+  padding: 8px 14px;
   margin: 6px;
   cursor: pointer;
   font-weight: 600;
@@ -176,17 +191,17 @@ body {
   transition: transform 0.2s, background 0.3s, box-shadow 0.3s;
 }
 
+
 #toolbar button:hover {
   background: linear-gradient(135deg, #48cae4, #90e0ef);
-  transform: scale(1.55);
+  transform: scale(1.05);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
 }
 
 #toolbar button:active {
-  transform: scale(0.95);
+  transform: scale(0.98);
 }
 
-/* --- CANVAS LAG --- */
 #template-layer {
   background: #ffffff;
   border-radius: 20px;
@@ -196,22 +211,30 @@ body {
   background: transparent;
 }
 
-/* --- CANVAS --- */
-canvas {
+#template-layer,
+#drawing-board {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#drawing-board {
   border: 3px solid #fff;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
-  max-width: 98vw;
-  max-height: 80vh;
-  width: 98%;
-  height: auto;
+}
+canvas {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-/* --- RESPONSIV JUSTERING --- */
 @media (max-width: 768px) {
   #toolbar {
     width: 100%;
-    padding: 16px;
+    padding: 12px;
+    max-width: 100%;
   }
 
   #toolbar h1 {
@@ -219,20 +242,65 @@ canvas {
   }
 
   #FiskeTemplates .FiskeTemplate {
-    width: 85px;
-    height: 65px;
+    height: 70px;
   }
+}
 
-  canvas {
-    max-height: 65vh;
-  }
+#canva {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  height: 70vh;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+#canva > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+#template-layer,
+#drawing-board {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#template-layer {
+  background: #fff;
+  border-radius: 20px;
+}
+#drawing-board {
+  border: 3px solid #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+}
+
+canvas {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#colors-sizes-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 12px 0;
+}
+
+#SaveFish,
+#saveFish {
+  position: static;
 }
 
 /* -------------------------------------------------------------------------- */
 
 /* --------------------------forside---------------------------------------- */
-
-/* knapper */
 #forside.html body {
   margin: 0;
   height: 100vh;
@@ -283,4 +351,5 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  margin: 0;
 }
