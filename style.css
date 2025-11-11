@@ -243,6 +243,10 @@ body {
 }
 
 #forside-btn .btn-t {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 3rem;
   padding: 20px 40px;
   background-color: #f4aa43;
@@ -273,6 +277,3 @@ body {
   height: auto;
   object-fit: contain;
 }
-
-
-/* ------------------------------akvarium.html------------------------- */
