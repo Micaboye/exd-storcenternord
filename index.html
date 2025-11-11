@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fisketest</title>
+      <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+
+ <section class="container">
+  <div id="toolbar">
+        <h1>Tegn en Fisk</h1>
+
+    <div id="colors">
+          <h2 class="subheading">Vælg farve</h2>
+      <button class="color" data-color="#000000" style="background:#000000;"></button>
+      <button class="color" data-color="#FF0000" style="background:#FF0000;"></button>
+      <button class="color" data-color="#00FF00" style="background:#00FF00;"></button>
+      <button class="color" data-color="#0000FF" style="background:#0000FF;"></button>
+      <button class="color" data-color="#FFFF00" style="background:#FFFF00;"></button>
+      <button class="color" data-color="#FF00FF" style="background:#FF00FF;"></button>
+    </div>
+    
+    <div id="sizes">
+          <h2 class="subheading">Vælg penselstørrelse</h2> 
+      <button class="size" data-size="2"><div class="dot" style="width:4px; height:4px;"></div></button>
+      <button class="size" data-size="5"><div class="dot" style="width:10px; height:10px;"></div></button>
+      <button class="size" data-size="10"><div class="dot" style="width:20px; height:20px;"></div></button>
+    </div>
+
+    <div id="FiskeTemplates">
+      <h2 class="subheading">Vælg en fisk</h2> 
+      <img class="FiskeTemplate" src="img/pudsefisklines.png" data-src="img/pudsefisklines.png" alt="Fisk 1">
+      <img class="FiskeTemplate" src="img/klovnefisklines.png" data-src="img/klovnefisklines.png" alt="Fisk 2">
+      <img class="FiskeTemplate" src="img/Pindsvindfisklines.png" data-src="img/Pindsvindfisklines.png" alt="Fisk 3">
+      <img class="FiskeTemplate" src="img/kirugfisklines.png" data-src="img/kirugfisklines.png" alt="Fisk 4">
+      <img class="FiskeTemplate" src="img/blachromislines.png" data-src="img/blachromislines.png" alt="Fisk 5">
+      <img class="FiskeTemplate" src="img/ravefjasline.png" data-src="img/ravefjas.png" alt="Fisk 6">
+    </div>
+
+    
+   
+
+      <button id="clear">Clear</button>
+      <button id="cleartemplate">Fjern fisk</button>
+      <button id="SaveFish">Jeg er færdig</button>
+
+
+    <div class="havfrue2">
+        <img src="img/designvalg.png" id="havfrue2" alt="havfrue 2" />
+    </div>
+
+  <div style="position: relative;">
+  <canvas id="template-layer" style="position:absolute; top:0; left:0; z-index:0;"></canvas>
+  <canvas id="drawing-board" style="position:absolute; top:0; left:0; z-index:1;"></canvas>
+</div>
+</section>
+
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+</html>
