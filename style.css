@@ -277,3 +277,10 @@ canvas {
   height: auto;
   object-fit: contain;
 }
+
+body {
+  background-image: url("img/bagrund.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
