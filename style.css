@@ -421,10 +421,6 @@ body {
   }
 }
 
-:root {
-  --off-fish4: 200px; /* sørg for at den findes */
-}
-
 .fish4 {
   position: absolute;
   bottom: 70.8vh;
@@ -470,10 +466,130 @@ body {
   max-width: 28vw;
   right: calc(-1 * var(--off-fish3));
   z-index: 1;
-  animation: fish3 9s linear infinite;
+  animation: fish6 9s linear infinite;
 }
 
-@keyframes fish3 {
+@keyframes fish6 {
+  0% {
+    transform: translateX(0);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(-100vw - var(--off-fish1)));
+  }
+}
+/*-----------------------------------------------------------------------------------------*/
+/*----------------------------------- akvarium side ---------------------------------------*/
+
+.fishOne {
+  position: absolute;
+  bottom: 15.4vh;
+  width: 150px;
+  max-width: 28vw;
+  z-index: 1;
+  left: calc(-1 * var(--off-fish1));
+  will-change: transform;
+  animation: fishOne 16s linear infinite;
+}
+
+@keyframes fishOne {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + var(--off-fish1)));
+  }
+}
+
+.fishTwo {
+  position: absolute;
+  bottom: 36.8vh;
+  width: 150;
+  max-width: 28vw;
+  right: calc(-1 * var(--off-fish2));
+  z-index: 1;
+  animation: fishTwo 25s linear infinite;
+}
+
+@keyframes fishTwo {
+  0% {
+    transform: translateX(0);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(-100vw - var(--off-fish2)));
+  }
+}
+
+.fishTree {
+  position: absolute;
+  bottom: 5.8vh;
+  width: 150;
+  max-width: 28vw;
+  right: calc(-1 * var(--off-fish3));
+  z-index: 1;
+  animation: fishTree 40s linear infinite;
+}
+
+@keyframes fishTree {
+  0% {
+    transform: translateX(0);
+  }
+  90%,
+  100% {
+    transform: translateX(calc(-100vw - var(--off-fish1)));
+  }
+}
+
+.fishFour {
+  position: absolute;
+  bottom: 70.8vh;
+  width: 150px;
+  max-width: 28vw;
+  left: calc(-1 * var(--off-fish4));
+  z-index: 1;
+  animation: fishFour 40s linear infinite;
+}
+
+@keyframes fishFour {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + var(--off-fish4)));
+  }
+}
+
+.fishFive {
+  position: absolute;
+  bottom: 83.8vh;
+  width: 150px;
+  max-width: 28vw;
+  left: calc(-1 * var(--off-fish5));
+  z-index: 1;
+  animation: fishFive 15s linear infinite;
+}
+
+@keyframes fishFive {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(100vw + var(--off-fish5)));
+  }
+}
+
+.fishSix {
+  position: absolute;
+  bottom: 58.8vh;
+  width: 150;
+  max-width: 28vw;
+  right: calc(-1 * var(--off-fish3));
+  z-index: 1;
+  animation: fishSix 9s linear infinite;
+}
+
+@keyframes fishSix {
   0% {
     transform: translateX(0);
   }
