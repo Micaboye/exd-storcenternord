@@ -175,6 +175,17 @@ sefiskknap.addEventListener("click", () => {
     imgElement.alt = "No saved drawing found 😢";
   }
 });
+
+// Havfrue2
+// Fjern havfrue2 fra layout når animationen er færdig (sikrer ingen klik eller pladsoptag)
+const _havfrue2 = document.getElementById("havfrue2");
+if (_havfrue2) {
+  _havfrue2.addEventListener("animationend", () => {
+    // Skjul helt efter animationen
+    _havfrue2.style.display = "none";
+  });
+}
+
 // -----------------------------------------------------------------------------------
 
 // --------------------------forside--------------------------------------------------
