@@ -40,7 +40,7 @@
 
     </div>
 
-      <button id="clear">Clear</button>
+      <button id="clear">Ryd</button>
       <button id="cleartemplate">Fjern fisk</button>
       <button id="saveFish">Jeg er færdig</button>
 
@@ -60,8 +60,25 @@
 
 
 
+
+
+
+<!-- Modal til fisk når man har trykket færdig så man kan give den et navn -->
+<div id="fishModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <img id="fishPreview" alt="Din fisk">
+
+     <!-- FISKENANV -->
+    <div style="margin-top: 10px;">
+      <label for="fishName">Fiskens navn:</label>
+      <input type="text" id="fishName" placeholder="Skriv navn her">
+    </div>
+    
+    <button id="saveFishName" style="margin-top: 10px;">Gem fisk</button>
+  </div>
+</div>
+
 <script src="script.js"></script>
-
-
 </body>
 </html>

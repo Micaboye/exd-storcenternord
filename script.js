@@ -57,17 +57,19 @@ const ctx = canvas.getContext("2d");
 const templateCanvas = document.getElementById("template-layer");
 const templateCtx = templateCanvas.getContext("2d");
 
-// regner størrelser ud
-let canvasRect = canvas.getBoundingClientRect();
-const canvasOffsetX = canvas.offsetLeft;
-const canvasOffsetY = canvas.offsetTop;
+//laver canvas variable
 
-//sætter canvas størrelser til at være det samme
-canvas.width = window.innerWidth - canvasOffsetX;
-canvas.height = window.innerHeight - canvasOffsetY;
+let canvasRect;
 
-templateCanvas.width = canvas.width;
-templateCanvas.height = canvas.height;
+function resizeCanvas() {
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width;
+  canvas.height = rect.height;
+  templateCanvas.width = rect.width;
+  templateCanvas.height = rect.height;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 // Holder kun reference, tegner INTET ved load
 let currentTemplateSrc = null;
@@ -159,9 +161,11 @@ document.querySelectorAll(".FiskeTemplate").forEach((thumb) => {
 // starter ispainting hvis man trykker mus nede
 canvas.addEventListener("mousedown", (e) => {
   isPainting = true;
-  canvasRect = canvas.getBoundingClientRect(); // den her er vigtig for at finde ud af hvor canvas ligger i forhold til skærmen
-  startX = e.clientX;
-  startY = e.clientY;
+  canvasRect = canvas.getBoundingClientRect();
+  startX = e.clientX - canvasRect.left;
+  startY = e.clientY - canvasRect.top;
+  ctx.beginPath();
+  ctx.moveTo(startX, startY);
 });
 
 // stopper ispainting hvis man giver slip på mus
@@ -189,9 +193,15 @@ const draw = (e) => {
 // eventlistener der aktiverer draw function når du bevæger mus
 canvas.addEventListener("mousemove", draw);
 
-//alt med localstorage kommer her
+// alt med localstorage kommer her, har også addet modal
 const saveButton = document.getElementById("saveFish");
+const modal = document.getElementById("fishModal");
+const closeModal = document.getElementById("closeModal");
+const imgPreview = document.getElementById("fishPreview");
+const fishNameInput = document.getElementById("fishName");
+const saveFishNameButton = document.getElementById("saveFishName");
 
+// Åbner modal og viser fisken
 saveButton.addEventListener("click", () => {
   // converter det til url så man kan sende img
   const drawingData = canvas.toDataURL("image/png");
@@ -199,24 +209,41 @@ saveButton.addEventListener("click", () => {
   // gem til localstorage
   localStorage.setItem("savedDrawingOnly", drawingData);
 
-  //sender videre til næste side med det samme man trykker gem
+  // Vis i modal
+  imgPreview.src = drawingData;
+  modal.style.display = "flex";
+});
+
+// Luk modal ved klik på X
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Luk modal ved klik udenfor boksen
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.style.display = "none";
+  
+});
+
+
+// gemfiskenanvn
+  saveFishNameButton.addEventListener("click", () => {
+    const fishName = fishNameInput.value;
+
+    // gem fiskenavn i localstorage
+    localStorage.setItem("savedFishName", fishName);
+
+    if(fishName){
+//næste side
   window.location.href = "akvarium.html";
-});
+    }
+    
 
-//kode til akvariumside
+  });
 
-const sefiskknap = document.getElementById("sefisk");
 
-sefiskknap.addEventListener("click", () => {
-  const imgElement = document.getElementById("fishDrawing");
-  const savedDrawing = localStorage.getItem("savedDrawingOnly");
 
-  if (savedDrawing) {
-    imgElement.src = savedDrawing;
-  } else {
-    imgElement.alt = "No saved drawing found 😢";
-  }
-});
+
 
 // Havfrue2
 // Fjern havfrue2 fra layout når animationen er færdig (sikrer ingen klik eller pladsoptag)
@@ -228,84 +255,4 @@ if (_havfrue2) {
   });
 }
 
-// -----------------------------------------------------------------------------------
 
-// --------------------------forside--------------------------------------------------
-const fishInfo = [
-  {
-    className: "fish1",
-    fishName: "Oscar",
-    fishType: "Blå chromis",
-    food: "Zooplankton, Alger",
-    habitat: "Koralrev, Huler og Revstrukturer",
-  },
-  {
-    className: "fish2",
-    fishName: "Dory",
-    fishType: "Kirurgfisk",
-    food: "Alger",
-    habitat: "Koraller",
-  },
-  {
-    className: "fish3",
-    fishName: "Nemo",
-    fishType: "Nemo fisk",
-    food: "Smådyr og Alger",
-    habitat: "Koraller",
-  },
-  {
-    className: "fish4",
-    fishName: "Carl",
-    fishType: "Pindsvinefisk",
-    food: "Bløddyr og krebsdyr",
-    habitat: "Rev og Koraller",
-  },
-  {
-    className: "fish5",
-    fishName: "Emma",
-    fishType: "Pudsefisk",
-    food: "Parasitter og rester fra andre fisk",
-    habitat: "Koralrev",
-  },
-  {
-    className: "fish6",
-    fishName: "Robin",
-    fishType: "Rævefjæs",
-    food: "Alger",
-    habitat: "Koralrev i Laguner ",
-  },
-];
-
-// venter med at kører JS koden indtil hele HTML-siden er indlæst
-document.addEventListener("DOMContentLoaded", () => {
-  // finder tooltip id og gemmer det i en variabel
-  const tooltip = document.getElementById("tooltip");
-  //    funktion der viser tooltip med biloplysninger
-  // parameter: html = den tekst der indeholder html-tags som vi vil vise i tooltip'en
-  function showTooltip(html) {
-    if (tooltip) {
-      // indsætter teksten i tooltip'en
-      tooltip.innerHTML = html;
-      // gør tooltip'en synlig med css klassen
-      tooltip.classList.add("is-visible");
-
-      setTimeout(function () {
-        tooltip.classList.remove("is-visible");
-      }, 8000);
-    }
-  }
-});
-
-fishInfo.forEach((fish) => {
-  document.querySelectorAll("." + fish.className).forEach((elem) => {
-    elem.addEventListener("mouseover", () => {
-      // $ henter værdier fra Array
-      const fishDeatails = ` 
-                <strong>${fish.fishName} ${fish.fishType}</strong><br>
-                Den spiser: ${fish.food}<br>
-                Den bor i: ${fish.habitat} 
-            `;
-      showTooltip(fishDeatails);
-    });
-  });
-});
