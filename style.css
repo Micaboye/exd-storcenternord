@@ -319,11 +319,11 @@ canvas {
 
 #forside-btn .btn-t {
   position: fixed;
-  top: 50%;
+  top: 46%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 3rem;
-  padding: 30px 70px;
+  padding: 18px 70px;
   background-color: #f4aa43;
   color: white;
   border: none;
@@ -641,10 +641,9 @@ body {
 .modal {
   display: none;
   position: fixed;
-  inset: 0; 
+  inset: 0;
   background-color: rgba(0, 0, 0, 0.5);
 
-  
   justify-content: center;
   align-items: center;
 }
@@ -666,7 +665,6 @@ body {
   box-sizing: border-box;
 }
 
-
 .close {
   position: absolute;
   top: 16px;
@@ -680,7 +678,6 @@ body {
   color: #000;
 }
 
-
 #fishPreview {
   display: block;
   max-width: 80%;
@@ -689,21 +686,19 @@ body {
   margin: 0 auto 25px auto;
 }
 
-
 .fish-title {
-  font-family: 'Poppins', sans-serif;
-  font-size: 56px; 
+  font-family: "Poppins", sans-serif;
+  font-size: 56px;
   font-weight: 700;
   color: #1b4b7a;
   margin-bottom: 25px;
   text-align: center;
 }
 
-
 #fishName {
   display: block;
-  margin: 0 auto;         
-  box-sizing: border-box; 
+  margin: 0 auto;
+  box-sizing: border-box;
   padding: 16px 20px;
   font-size: 22px;
   border: 2px solid #ccc;
@@ -718,7 +713,6 @@ body {
   box-shadow: 0 0 6px rgba(74, 163, 223, 0.4);
   outline: none;
 }
-
 
 #saveFishName {
   background-color: #4aa3df;
