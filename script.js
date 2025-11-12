@@ -9,15 +9,23 @@ const havfrue2Sound = document.getElementById("havfrue2");
 
 const havfrue2lyd = new Audio("sounds/side2lyd.mp3");
 
-setTimeout(() => {
-  backgroundSound.play();
-}, 10);
 
-backgroundSound.loop = true;
+
+function enableSound() {
 
 setTimeout(() => {
   havfrue2lyd.play();
-}, 1000);
+}, 100);
+
+  document.removeEventListener('click', enableSound);
+}
+
+document.addEventListener('click', enableSound);
+
+
+
+backgroundSound.loop = true;
+
 
 // -----------------------------index.html----------------------------------------
 
@@ -142,6 +150,11 @@ canvas.addEventListener("mousedown", (e) => {
   startY = e.clientY - canvasRect.top;
   ctx.beginPath();
   ctx.moveTo(startX, startY);
+
+
+   setTimeout(() => {
+  backgroundSound.play();
+}, 10);
 });
 
 // stopper ispainting hvis man giver slip på mus

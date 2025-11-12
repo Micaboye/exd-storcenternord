@@ -9,15 +9,27 @@ const havfrue1Sound = document.getElementById("havfrue1");
 
 const havfrue1lyd = new Audio("sounds/forsidelyd.mp3");
 
-setTimeout(() => {
-  backgroundSound.play();
-}, 1000);
 
-backgroundSound.loop = true;
+
+
+function enableSound() {
 
 setTimeout(() => {
   havfrue1lyd.play();
-}, 1000);
+}, 100);
+
+
+
+setTimeout(() => {
+  backgroundSound.play();
+}, 5800);
+
+backgroundSound.loop = true;
+
+  document.removeEventListener('click', enableSound);
+}
+
+document.addEventListener('click', enableSound);
 
 // --------------------------forside--------------------------------------------------
 const fishInfo = [
