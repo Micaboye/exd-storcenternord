@@ -18,7 +18,7 @@ const fishInfo = [
   {
     className: "fish3",
     fishName: "Nemo",
-    fishType: "Nemo fisk",
+    fishType: "Klovnefisk",
     food: "Smådyr og Alger",
     habitat: "Koraller",
   },
@@ -45,45 +45,43 @@ const fishInfo = [
   },
 ];
 
-
 // finder tooltip id og gemmer det i en variabel
-   const tooltip = document.getElementById("tooltip");
+const tooltip = document.getElementById("tooltip");
 
 // Funktion der viser tooltip med biloplysninger
-   // Parameter: html = den tekst indeholdende html-tags som vi vil vise i tooltip'en
-   function showTooltip(html) {
-      // Tjekker om tooltip-elementet eksisterer i DOM'en
-      if (tooltip) {
-         // Indsætter teksten i tooltip'en
-         tooltip.innerHTML = html;
-         // Gør tooltip'en synlig med css klassen
-         tooltip.classList.add("is-visible");
+// Parameter: html = den tekst indeholdende html-tags som vi vil vise i tooltip'en
+function showTooltip(html) {
+  // Tjekker om tooltip-elementet eksisterer i DOM'en
+  if (tooltip) {
+    // Indsætter teksten i tooltip'en
+    tooltip.innerHTML = html;
+    // Gør tooltip'en synlig med css klassen
+    tooltip.classList.add("is-visible");
 
-         // Sætter en timer til at skjule tooltip'en efter 8 sekunder
-         setTimeout( function() {
-            // Fjerner css klassen så tooltip'en skjules igen
-            tooltip.classList.remove("is-visible");
-         },8000);
-      }}
+    // Sætter en timer til at skjule tooltip'en efter 8 sekunder
+    setTimeout(function () {
+      // Fjerner css klassen så tooltip'en skjules igen
+      tooltip.classList.remove("is-visible");
+    }, 8000);
+  }
+}
 
-
-    fishInfo.forEach((fish) => {
-      // Finder alle HTML-elementer med den aktuelle bils className
-      document.querySelectorAll("." + fish.className).forEach((elem) => {
-            // Tilføjer mouseover event listener til hvert element
-            elem.addEventListener("mouseover", () => {
-               // Opretter HTML-strengen med bilens detaljer
-               const fiskeDetails = `
+fishInfo.forEach((fish) => {
+  // Finder alle HTML-elementer med den aktuelle bils className
+  document.querySelectorAll("." + fish.className).forEach((elem) => {
+    // Tilføjer mouseover event listener til hvert element
+    elem.addEventListener("mouseover", () => {
+      // Opretter HTML-strengen med bilens detaljer
+      const fiskeDetails = `
 
                <strong>${fish.fishName}</strong><br>
                Art: ${fish.fishType}<br>
                Jeg spiser: ${fish.food}<br>
                Jeg bor i: ${fish.habitat}
                `;
-               // Kalder showTooltip funktionen med bilens detaljer
-               showTooltip(fiskeDetails);
-            });
-            
-      });
-   });
+      // Kalder showTooltip funktionen med bilens detaljer
+      showTooltip(fiskeDetails);
+    });
+  });
+});
 

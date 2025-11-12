@@ -323,7 +323,7 @@ canvas {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 3rem;
-  padding: 20px 40px;
+  padding: 30px 70px;
   background-color: #f4aa43;
   color: white;
   border: none;
@@ -466,7 +466,7 @@ body {
   max-width: 28vw;
   right: calc(-1 * var(--off-fish3));
   z-index: 1;
-  animation: fish6 9s linear infinite;
+  animation: fish6 16s linear infinite;
 }
 
 @keyframes fish6 {
@@ -479,32 +479,31 @@ body {
   }
 }
 
-
 /*-----------------------------------------------------------------------------------------*/
 /*----------------------------------- tooltip forside -------------------------------------*/
 
 .tooltip {
-   position: fixed;
-   right: 16px;
-   bottom: 16px;
-   background-color: rgba(0, 0, 0, 0.85);
-   color: #fff;
-   padding: 10px 12px;
-   border-radius: 8px;
-   font-size: 14px;
-   line-height: 1.35;
-   max-width: min(320px, 90vw);
-   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-   opacity: 0;
-   transform: translateY(8px);
-   transition: opacity 0.25s ease, transform 0.25s ease;
-   pointer-events: none; /* så den ikke fanger når du flytter musen henover */
-   z-index: 1000;
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.35;
+  max-width: min(320px, 90vw);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none; /* så den ikke fanger når du flytter musen henover */
+  z-index: 1000;
 }
 
 .tooltip.is-visible {
-   opacity: 1;
-   transform: translateY(0);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /*-----------------------------------------------------------------------------------------*/
@@ -630,17 +629,18 @@ body {
 
 #fishDrawing {
   position: absolute;
-  bottom: 83.8vh;
-  width: 150px;
+  width: 350px;
   max-width: 28vw;
   left: calc(-1 * var(--off-fish5));
+  top: 38%;
+  transform: translateY(-50%);
   z-index: 1;
   animation: fishFive 15s linear infinite;
 }
 
 /* ---------------- MODAL ---------------- */
 .modal {
-  display: none; 
+  display: none;
   position: fixed;
   inset: 0; 
   background-color: rgba(0, 0, 0, 0.5);
