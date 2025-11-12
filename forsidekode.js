@@ -1,47 +1,66 @@
 "use strict";
 
-// -------------------------- SOUND forside --------------------------
 (() => {
-  function initSound() {
-    const sound = document.getElementById("bgSound");
-    if (!sound) return;
+  const KEY_TIME = "bgSound:time";
+  const KEY_ENABLED = "bgSound:enabled";
 
+  function init() {
+    const el = document.getElementById("bgSound");
+    if (!el) return;
+
+    // Forsøg at spille (muted autoplay)
     const playSafe = () => {
-      const p = sound.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
+      const p = el.play();
+      if (p && p.catch) p.catch(() => {});
     };
+
+    // Genoptag tid hvis gemt
+    try {
+      const saved = sessionStorage.getItem(KEY_TIME);
+      if (saved) {
+        const { t } = JSON.parse(saved) || {};
+        const setTime = () => {
+          try {
+            if (typeof t === "number") el.currentTime = t;
+          } catch {}
+        };
+        if (el.readyState >= 1) setTime();
+        else el.addEventListener("loadedmetadata", setTime, { once: true });
+      }
+      // Hvis allerede “godkendt”, unmute
+      if (sessionStorage.getItem(KEY_ENABLED) === "1") el.muted = false;
+    } catch {}
+
     playSafe();
 
-    // Unmute ved første brugerinteraktion
+    // Første brugerinteraktion = unmute + gem godkendelse
     const enable = () => {
-      sound.muted = false;
+      el.muted = false;
+      try {
+        sessionStorage.setItem(KEY_ENABLED, "1");
+      } catch {}
       playSafe();
-      teardown(); 
+      window.removeEventListener("pointerdown", enable, { passive: true });
     };
-    const teardown = () =>
-      evts.forEach((e) => window.removeEventListener(e, enable));
-    const evts = ["click", "scroll", "keydown", "touchstart"];
-    evts.forEach((e) => window.addEventListener(e, enable, { passive: true }));
+    window.addEventListener("pointerdown", enable, { passive: true });
 
-    // Stop lyden ved navigation
-    window.addEventListener("pagehide", () => {
-      sound.pause();
-      sound.currentTime = 0;
-    });
-    document.addEventListener("click", (e) => {
-      if (e.target.closest && e.target.closest("a[href]")) {
-        sound.pause();
-        sound.currentTime = 0;
-      }
-    });
+    // Gem afspilningsposition jævnligt
+    const save = () => {
+      try {
+        sessionStorage.setItem(KEY_TIME, JSON.stringify({ t: el.currentTime }));
+      } catch {}
+    };
+    el.addEventListener("timeupdate", save);
+
+    // Ved navigation: gem (pagehide dækker både reload og links)
+    window.addEventListener("pagehide", save);
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initSound, { once: true });
-  } else {
-    initSound();
-  }
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();
+
 
 // --------------------------forside--------------------------------------------------
 const fishInfo = [
