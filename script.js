@@ -260,8 +260,6 @@ modal.addEventListener("click", (e) => {
 //næste side
   window.location.href = "akvarium.html";
     }
-    
-
   });
 
 
