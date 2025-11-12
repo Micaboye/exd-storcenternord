@@ -5,6 +5,9 @@
   const KEY_TIME = "bgSound:time";
   const KEY_ENABLED = "bgSound:enabled";
 
+  const audio = document.getElementById("bgSound");
+  audio.volume = 0.2; 
+
   function init() {
     const el = document.getElementById("bgSound");
     if (!el) return;
