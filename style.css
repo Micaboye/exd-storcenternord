@@ -184,9 +184,15 @@ body {
 }
 
 @keyframes havfrue-bob {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-24px); } /* hvor langt hun går op */
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-24px);
+  } /* hvor langt hun går op */
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* --- KNAPPER --- */
@@ -218,8 +224,6 @@ body {
   transform: scale(1.05);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
 }
-
-
 
 #toolbar button:active {
   transform: scale(0.98);
@@ -316,11 +320,9 @@ canvas {
   margin: 12px 0;
 }
 
-
 #saveFish {
   position: static;
 }
-
 
 /* -------------------------------------------------------------------------- */
 
@@ -371,7 +373,7 @@ canvas {
 }
 
 body {
-  background-image: url("img/bagrund.png");
+  background-image: url("img/background2.png");
   background-size: 100% auto;
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -485,6 +487,16 @@ body {
   animation: fish6 16s linear infinite;
 }
 
+.kiste {
+  position: absolute;
+  bottom: 19px;
+  width: 700px;
+  max-width: 60vw;
+  left: 44%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
 @keyframes fish6 {
   0% {
     transform: translateX(0);
@@ -504,9 +516,15 @@ body {
 }
 
 @keyframes havfrue-bob {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-24px); } /* hvor langt hun går op */
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-24px);
+  } /* hvor langt hun går op */
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /*-----------------------------------------------------------------------------------------*/
@@ -677,7 +695,7 @@ body {
 
   justify-content: center;
   align-items: center;
-} 
+}
 
 .modal-content {
   background: #fff;
