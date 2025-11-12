@@ -158,7 +158,7 @@ body {
 #havfrue2 {
   animation-name: havfrue-disappear;
   animation-duration: 1s;
-  animation-delay: 5s;
+  animation-delay: 6s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-out;
 }
