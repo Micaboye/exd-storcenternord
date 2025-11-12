@@ -1,69 +1,23 @@
 "use strict";
 
-(() => {
-  const KEY_TIME = "bgSound:time";
-  const KEY_ENABLED = "bgSound:enabled";
+const bgSound = document.getElementById("bgSound");
+const backgroundSound = new Audio(
+  "sounds/Royalty-Free-MusicUnder-the-sealittle.mp3"
+);
 
-  const audio = document.getElementById("bgSound");
-  audio.volume = 0.2; 
+const havfrue1Sound = document.getElementById("havfrue1");
 
-  function init() {
-    const el = document.getElementById("bgSound");
-    if (!el) return;
+const havfrue1lyd = new Audio("sounds/forsidelyd.mp3");
 
-    // Forsøg at spille (muted autoplay)
-    const playSafe = () => {
-      const p = el.play();
-      if (p && p.catch) p.catch(() => {});
-    };
+setTimeout(() => {
+  backgroundSound.play();
+}, 1000);
 
-    // Genoptag tid hvis gemt
-    try {
-      const saved = sessionStorage.getItem(KEY_TIME);
-      if (saved) {
-        const { t } = JSON.parse(saved) || {};
-        const setTime = () => {
-          try {
-            if (typeof t === "number") el.currentTime = t;
-          } catch {}
-        };
-        if (el.readyState >= 1) setTime();
-        else el.addEventListener("loadedmetadata", setTime, { once: true });
-      }
-      // Hvis allerede “godkendt”, unmute
-      if (sessionStorage.getItem(KEY_ENABLED) === "1") el.muted = false;
-    } catch {}
+backgroundSound.loop = true;
 
-    playSafe();
-
-    // Første brugerinteraktion = unmute + gem godkendelse
-    const enable = () => {
-      el.muted = false;
-      try {
-        sessionStorage.setItem(KEY_ENABLED, "1");
-      } catch {}
-      playSafe();
-      window.removeEventListener("pointerdown", enable, { passive: true });
-    };
-    window.addEventListener("pointerdown", enable, { passive: true });
-
-    // Gem afspilningsposition jævnligt
-    const save = () => {
-      try {
-        sessionStorage.setItem(KEY_TIME, JSON.stringify({ t: el.currentTime }));
-      } catch {}
-    };
-    el.addEventListener("timeupdate", save);
-
-    // Ved navigation: gem (pagehide dækker både reload og links)
-    window.addEventListener("pagehide", save);
-  }
-
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", init);
-  else init();
-})();
-
+setTimeout(() => {
+  havfrue1lyd.play();
+}, 1000);
 
 // --------------------------forside--------------------------------------------------
 const fishInfo = [
@@ -150,4 +104,3 @@ fishInfo.forEach((fish) => {
     });
   });
 });
-
