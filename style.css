@@ -175,6 +175,20 @@ body {
   }
 }
 
+.havfrue2 {
+  position: fixed;
+  left: 0;
+  top: 20px;
+  will-change: transform;
+  animation: havfrue-bob 3s ease-in-out infinite;
+}
+
+@keyframes havfrue-bob {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-24px); } /* hvor langt hun går op */
+  100% { transform: translateY(0); }
+}
+
 /* --- KNAPPER --- */
 #colors .color {
   width: 40px;
@@ -204,6 +218,8 @@ body {
   transform: scale(1.05);
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
 }
+
+
 
 #toolbar button:active {
   transform: scale(0.98);
@@ -300,10 +316,11 @@ canvas {
   margin: 12px 0;
 }
 
-#SaveFish,
+
 #saveFish {
   position: static;
 }
+
 
 /* -------------------------------------------------------------------------- */
 
@@ -478,6 +495,20 @@ body {
   }
 }
 
+.havfrue1 {
+  position: fixed;
+  left: 0;
+  top: 20px;
+  will-change: transform;
+  animation: havfrue-bob 3s ease-in-out infinite;
+}
+
+@keyframes havfrue-bob {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-24px); } /* hvor langt hun går op */
+  100% { transform: translateY(0); }
+}
+
 /*-----------------------------------------------------------------------------------------*/
 /*----------------------------------- tooltip forside -------------------------------------*/
 
@@ -646,7 +677,7 @@ body {
 
   justify-content: center;
   align-items: center;
-}
+} 
 
 .modal-content {
   background: #fff;
