@@ -62,7 +62,7 @@ const fishInfo = [
   {
     className: "fish3",
     fishName: "Nemo",
-    fishType: "Nemo fisk",
+    fishType: "Klovnefisk",
     food: "Smådyr og Alger",
     habitat: "Koraller",
   },
