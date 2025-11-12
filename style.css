@@ -175,6 +175,20 @@ body {
   }
 }
 
+.havfrue2 {
+  position: fixed;
+  left: 0;
+  top: 20px;
+  will-change: transform;
+  animation: havfrue-bob 3s ease-in-out infinite;
+}
+
+@keyframes havfrue-bob {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-24px); } /* hvor langt hun går op */
+  100% { transform: translateY(0); }
+}
+
 /* --- KNAPPER --- */
 #colors .color {
   width: 40px;
@@ -476,6 +490,20 @@ body {
   100% {
     transform: translateX(calc(-100vw - var(--off-fish1)));
   }
+}
+
+.havfrue1 {
+  position: fixed;
+  left: 0;
+  top: 20px;
+  will-change: transform;
+  animation: havfrue-bob 3s ease-in-out infinite;
+}
+
+@keyframes havfrue-bob {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-24px); } /* hvor langt hun går op */
+  100% { transform: translateY(0); }
 }
 
 /*-----------------------------------------------------------------------------------------*/
