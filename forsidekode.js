@@ -85,15 +85,3 @@ fishInfo.forEach((fish) => {
   });
 });
 
-/*
-
- // Hent DOM Elementer 
-   const fish1 = document.getElementById("fish1");
-   const fish2 = document.getElementById("fish2");
-   const fish3 = document.getElementById("fish3");
-   const fish4 = document.getElementById("fish4");
-   const fish5 = document.getElementById("fish5");
-   const fish6 = document.getElementById("fish6");
-
-
-   */
