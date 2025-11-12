@@ -16,7 +16,7 @@
     const enable = () => {
       sound.muted = false;
       playSafe();
-      teardown();
+      teardown(); 
     };
     const teardown = () =>
       evts.forEach((e) => window.removeEventListener(e, enable));
