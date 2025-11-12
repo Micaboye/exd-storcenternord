@@ -630,10 +630,11 @@ body {
 
 #fishDrawing {
   position: absolute;
-  bottom: 83.8vh;
-  width: 150px;
+  width: 350px;
   max-width: 28vw;
   left: calc(-1 * var(--off-fish5));
+  top: 38%;
+  transform: translateY(-50%);
   z-index: 1;
   animation: fishFive 15s linear infinite;
 }

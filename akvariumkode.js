@@ -14,7 +14,7 @@ console.log(gemtfiskenavn)
   if (savedDrawing) {
     imgElement.src = savedDrawing;
   } else {
-    imgElement.alt = 'hvor er din fisk;(';
+    imgElement.alt = 'hvor er din fisk? ;(';
   }
 });
 
@@ -39,7 +39,7 @@ const fishInfo = [
   {
     className: "fishTree",
     fishName: "Nemo",
-    fishType: "Nemo fisk",
+    fishType: "Klovnefisk",
     food: "Smådyr og Alger",
     habitat: "Koraller",
   },
