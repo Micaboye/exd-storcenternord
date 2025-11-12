@@ -355,10 +355,9 @@ canvas {
 
 body {
   background-image: url("img/bagrund.png");
-  background-size: cover;
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: center;
-  margin: 0;
+  background-position: bottom center;
 }
 
 .fish1 {
