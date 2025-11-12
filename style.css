@@ -478,35 +478,6 @@ body {
     transform: translateX(calc(-100vw - var(--off-fish1)));
   }
 }
-
-
-/*-----------------------------------------------------------------------------------------*/
-/*----------------------------------- tooltip forside -------------------------------------*/
-
-.tooltip {
-   position: fixed;
-   right: 16px;
-   bottom: 16px;
-   background-color: rgba(0, 0, 0, 0.85);
-   color: #fff;
-   padding: 10px 12px;
-   border-radius: 8px;
-   font-size: 14px;
-   line-height: 1.35;
-   max-width: min(320px, 90vw);
-   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-   opacity: 0;
-   transform: translateY(8px);
-   transition: opacity 0.25s ease, transform 0.25s ease;
-   pointer-events: none; /* så den ikke fanger når du flytter musen henover */
-   z-index: 1000;
-}
-
-.tooltip.is-visible {
-   opacity: 1;
-   transform: translateY(0);
-}
-
 /*-----------------------------------------------------------------------------------------*/
 /*----------------------------------- akvarium side ---------------------------------------*/
 
@@ -592,7 +563,7 @@ body {
 .fishFive {
   position: absolute;
   bottom: 83.8vh;
-  width: 150px;
+  width: 200px;
   max-width: 28vw;
   left: calc(-1 * var(--off-fish5));
   z-index: 1;
@@ -611,7 +582,7 @@ body {
 .fishSix {
   position: absolute;
   bottom: 58.8vh;
-  width: 150;
+  width: 200;
   max-width: 28vw;
   right: calc(-1 * var(--off-fish3));
   z-index: 1;
@@ -626,42 +597,4 @@ body {
   100% {
     transform: translateX(calc(-100vw - var(--off-fish1)));
   }
-}
-
-#fishDrawing {
-  position: absolute;
-  bottom: 83.8vh;
-  width: 150px;
-  max-width: 28vw;
-  left: calc(-1 * var(--off-fish5));
-  z-index: 1;
-  animation: fishFive 15s linear infinite;
-}
-
-
-.modal {
-  display: none; 
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.6);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  max-width: 80vw;
-  max-height: 80vh;
-}
-
-.close {
-  float: right;
-  font-size: 28px;
-  cursor: pointer;
 }
