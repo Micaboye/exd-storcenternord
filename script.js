@@ -10,7 +10,7 @@ const havfrue2Sound = document.getElementById("havfrue2");
 const havfrue2lyd = new Audio("sounds/side2lyd.mp3");
 
 
-
+//funktion der først bliver kaldt når man klikker som så spiller havfrue
 function enableSound() {
 
 setTimeout(() => {

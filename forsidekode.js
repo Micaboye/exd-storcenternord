@@ -11,7 +11,7 @@ const havfrue1lyd = new Audio("sounds/forsidelyd.mp3");
 
 
 
-
+//funktion der først bliver kaldt når man klikker som så spiller musik og havfrue
 function enableSound() {
 
 setTimeout(() => {
