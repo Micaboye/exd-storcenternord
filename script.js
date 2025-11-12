@@ -1,47 +1,5 @@
 "use strict";
 
-// -------------------------- SOUND forside --------------------------
-(() => {
-  function initSound() {
-    const sound = document.getElementById("bgSound");
-    if (!sound) return;
-
-    const playSafe = () => {
-      const p = sound.play();
-      if (p && typeof p.catch === "function") p.catch(() => {});
-    };
-    playSafe();
-
-    // Unmute ved første brugerinteraktion
-    const enable = () => {
-      sound.muted = false;
-      playSafe();
-      teardown();
-    };
-    const teardown = () =>
-      evts.forEach((e) => window.removeEventListener(e, enable));
-    const evts = ["click", "scroll", "keydown", "touchstart"];
-    evts.forEach((e) => window.addEventListener(e, enable, { passive: true }));
-
-    // Stop lyden ved navigation
-    window.addEventListener("pagehide", () => {
-      sound.pause();
-      sound.currentTime = 0;
-    });
-    document.addEventListener("click", (e) => {
-      if (e.target.closest && e.target.closest("a[href]")) {
-        sound.pause();
-        sound.currentTime = 0;
-      }
-    });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initSound, { once: true });
-  } else {
-    initSound();
-  }
-})();
 
 // -----------------------------index.html----------------------------------------
 
@@ -97,6 +55,7 @@ toolbar.addEventListener("click", (e) => {
     templateCtx.clearRect(0, 0, templateCanvas.width, templateCanvas.height);
   }
 });
+
 
 // ændrer strokebredde og farve inde i tooltips
 toolbar.addEventListener("change", (e) => {
