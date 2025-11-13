@@ -29,7 +29,7 @@ backgroundSound.loop = true;
 
 // -----------------------------index.html----------------------------------------
 
-// henter id fra canvas og tollbar er lines og clear knap
+// henter id fra canvas og toolbar er lines og clear knap
 
 const canvas = document.getElementById("drawing-board");
 const toolbar = document.getElementById("toolbar");
@@ -52,6 +52,7 @@ function resizeCanvas() {
   templateCanvas.width = rect.width;
   templateCanvas.height = rect.height;
 }
+
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
@@ -225,6 +226,7 @@ saveFishNameButton.addEventListener("click", () => {
     window.location.href = "akvarium.html";
   }
 });
+
 
 // Havfrue2
 // Fjern havfrue2 fra layout når animationen er færdig (sikrer ingen klik eller pladsoptag)

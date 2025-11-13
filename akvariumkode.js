@@ -12,7 +12,6 @@ setTimeout(() => {
 backgroundSound.loop = true;
 
 //kode til akvariumside
-
 //fiske navn localstorage
 const gemtfiskenavn = localStorage.getItem("savedFishName");
 console.log(gemtfiskenavn);
@@ -82,7 +81,7 @@ const fishInfo = [
 // finder tooltip id og gemmer det i en variabel
 const tooltip = document.getElementById("tooltip");
 
-// Funktion der viser tooltip med biloplysninger
+// Funktion der viser tooltip med fiskeoplysninger
 // Parameter: html = den tekst indeholdende html-tags som vi vil vise i tooltip'en
 function showTooltip(html) {
   // Tjekker om tooltip-elementet eksisterer i DOM'en
@@ -101,7 +100,7 @@ function showTooltip(html) {
 }
 
 fishInfo.forEach((fish) => {
-  // Finder alle HTML-elementer med den aktuelle bils className
+  // Finder alle HTML-elementer med den aktuelle fisk className
   document.querySelectorAll("." + fish.className).forEach((elem) => {
     // Tilføjer mouseover event listener til hvert element
     elem.addEventListener("mouseover", () => {
